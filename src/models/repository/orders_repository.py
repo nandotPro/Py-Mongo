@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 from src.models.connection.connection_handler import DBConnectionHandler
 
 class OrdersRepository:
@@ -25,3 +26,14 @@ class OrdersRepository:
         collection = self.__db_connection.get_collection(self.__collection_name)
         return collection.find(document_filter, {"name": 1, "price": 1})
 
+    def select_order_by_id(self, object_id: str) -> dict:
+        collection = self.__db_connection.get_collection(self.__collection_name)
+        return collection.find_one({"_id": ObjectId(object_id)})
+
+    def update_order(self, object_id: str, document: dict) -> None:
+        collection = self.__db_connection.get_collection(self.__collection_name)
+        collection.update_one({"_id": ObjectId(object_id)}, {"$set": document})
+
+    def delete_order(self, object_id: str) -> None:
+        collection = self.__db_connection.get_collection(self.__collection_name)
+        collection.delete_one({"_id": ObjectId(object_id)})

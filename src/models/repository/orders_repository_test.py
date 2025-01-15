@@ -39,3 +39,18 @@ def test_select_many_orders_with_properties():
     orders = orders_repository.select_many_orders_with_properties({"cupom": False})
     print(orders)
 
+@pytest.mark.skip(reason="integration test")
+def test_select_order_by_id():
+    orders_repository = OrdersRepository(connection)
+    order = orders_repository.select_order_by_id("669955778899001122334455")
+    print(order)
+
+@pytest.mark.skip(reason="integration test")
+def test_update_order():
+    orders_repository = OrdersRepository(connection)
+    orders_repository.update_order("669955778899001122334455", {"name": "Test Order Updated"})
+
+@pytest.mark.skip(reason="integration test")
+def test_delete_order():
+    orders_repository = OrdersRepository(connection)
+    orders_repository.delete_order("669955778899001122334455")
