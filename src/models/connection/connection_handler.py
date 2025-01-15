@@ -16,3 +16,5 @@ class DBConnectionHandler:
 
     def close_db_connection(self) -> None:
         self.__client.close()
+
+db_connection_handler = DBConnectionHandler()
