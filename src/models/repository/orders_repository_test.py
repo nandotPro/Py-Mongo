@@ -20,3 +20,22 @@ def test_insert_list_of_orders():
             {"name": "Test Order 2", "price": 200},
         ]
     )
+
+@pytest.mark.skip(reason="integration test")
+def test_select_many_orders():
+    orders_repository = OrdersRepository(connection)
+    orders = orders_repository.select_many_orders({"cupom": False})
+    print(orders)
+
+@pytest.mark.skip(reason="integration test")
+def test_select_one_order():
+    orders_repository = OrdersRepository(connection)
+    order = orders_repository.select_one_order({"cupom": False})
+    print(order)
+
+@pytest.mark.skip(reason="integration test")
+def test_select_many_orders_with_properties():
+    orders_repository = OrdersRepository(connection)
+    orders = orders_repository.select_many_orders_with_properties({"cupom": False})
+    print(orders)
+
