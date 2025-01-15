@@ -1,5 +1,5 @@
 from cerberus import Validator
-
+from src.errors.errors_types.http_unprocessable_entity_error import HttpUnprocessableEntityError
 def validate_create_order(body: any):
     body_schema = Validator({
         "data": {
@@ -25,6 +25,6 @@ def validate_create_order(body: any):
 
     response = body_schema.validate(body)
     if response is False:
-        raise Exception(body_schema.errors)
+        raise HttpUnprocessableEntityError(body_schema.errors)
     
     return response
